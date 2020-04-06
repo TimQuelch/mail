@@ -37,11 +37,20 @@ RUN apk add --no-cache \
     curl \
     gmime \
     openssl \
+    shadow \
     sqlite \
+    openssh \
     talloc \
     xapian-core \
     zlib
 
-COPY --from=build /usr/local /usr/local
+RUN echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
+    && ssh-keygen -A \
+    && usermod --shell /bin/sh mail --password $(openssl rand -base64 12)
 
-USER mail
+COPY --from=build /usr/local /usr/local
+COPY entrypoint.sh /bin/entrypoint.sh
+
+EXPOSE 22
+ENTRYPOINT ["/bin/entrypoint.sh"]
+CMD ["/usr/sbin/sshd", "-D"]

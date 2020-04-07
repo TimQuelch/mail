@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+    offlineimap:
+        build: ./offlineimap/
+        volumes:
+            - ~/maildir:/var/mail/maildir
+            - ~/secrets:/var/mail/secrets
+            - ~/mail/offlineimap.conf:/var/mail/.offlineimap.rc
+        restart: always
+    notmuch:
+      build: ./notmuch/
+        volumes:
+            - ~/maildir:/var/mail/maildir
+            - ~/mail/notmuch.conf:/var/mail/.notmuch-config
+        ports:
+          - "47474:22"
+        restart: always
+
+      

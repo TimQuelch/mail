@@ -5,12 +5,13 @@ services:
         volumes:
             - ~/maildir:/var/mail/maildir
             - ~/secrets:/var/mail/secrets
-            - ./offlineimap.conf:/var/mail/.offlineimap.rc
+            - ./offlineimap.conf:/var/mail/.offlineimaprc
         restart: always
     notmuch:
         build: ./notmuch/
         volumes:
             - ~/maildir:/var/mail/maildir
+            - ~/.ssh/authorized_keys:/tmp/.ssh/authorized_keys
             - ./notmuch.conf:/var/mail/.notmuch-config
         ports:
             - "47474:22"

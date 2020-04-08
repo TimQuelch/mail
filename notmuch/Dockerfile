@@ -45,7 +45,6 @@ RUN apk add --no-cache \
     zlib
 
 RUN echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
-    && ssh-keygen -A \
     && usermod --shell /bin/sh mail --password $(openssl rand -base64 12)
 
 COPY --from=build /usr/local /usr/local

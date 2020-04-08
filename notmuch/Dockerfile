@@ -48,9 +48,11 @@ RUN echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
     && usermod --shell /bin/sh mail --password $(openssl rand -base64 12)
 
 COPY --from=build /usr/local /usr/local
-RUN ln -s /usr/local/bin/notmuch /usr/bin/ && ln -s /usr/local/bin/muchsync /usr/bin
-COPY entrypoint.sh /bin/entrypoint.sh
+RUN ln -s /usr/local/bin/notmuch /usr/bin/ \
+    && ln -s /usr/local/bin/muchsync /usr/bin
 
 EXPOSE 22
+
+COPY entrypoint.sh /bin/entrypoint.sh
 ENTRYPOINT ["/bin/entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D"]

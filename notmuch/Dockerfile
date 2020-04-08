@@ -40,9 +40,12 @@ RUN apk add --no-cache \
     shadow \
     sqlite \
     openssh \
+    python \
+    py3-pip \
     talloc \
     xapian-core \
-    zlib
+    zlib \
+    && pip3 install afew
 
 RUN echo "PasswordAuthentication no" >> /etc/ssh/sshd_config \
     && usermod --shell /bin/sh mail --password $(openssl rand -base64 12)

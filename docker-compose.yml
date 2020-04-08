@@ -31,6 +31,8 @@ services:
             - ../maildir:/var/mail/maildir
             - ../.ssh/authorized_keys:/tmp/.ssh/authorized_keys
             - ./notmuch.conf:/var/mail/.notmuch-config
+            - ./afew.conf:/var/mail/.config/afew/config
+            - ./notmuch-post-new:/bin/notmuch-post-new
         ports:
             - "47474:22"
 

@@ -1,0 +1,4 @@
+#!/bin/sh
+echo -n "Starting initial tagging with afew..."
+afew --tag --new
+echo " Finished"

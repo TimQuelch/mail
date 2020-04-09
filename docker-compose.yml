@@ -8,6 +8,14 @@ services:
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
         command: offlineimap -a personal
+    offlineimap_oldpersonal:
+        build: ./offlineimap/
+        restart: always
+        volumes:
+            - ../maildir:/var/mail/maildir
+            - ../secrets:/var/mail/secrets
+            - ./offlineimap.conf:/var/mail/.offlineimaprc
+        command: offlineimap -a oldpersonal
     offlineimap_qut:
         build: ./offlineimap/
         restart: always

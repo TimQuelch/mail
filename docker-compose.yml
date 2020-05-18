@@ -32,6 +32,14 @@ services:
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
         command: offlineimap -a student
+    offlineimap_uom:
+        build: ./offlineimap/
+        restart: always
+        volumes:
+            - ../maildir:/var/mail/maildir
+            - ../secrets:/var/mail/secrets
+            - ./offlineimap.conf:/var/mail/.offlineimaprc
+        command: offlineimap -a uom
     notmuch:
         build: ./notmuch/
         restart: always

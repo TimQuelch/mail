@@ -16,22 +16,22 @@ services:
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
         command: offlineimap -a oldpersonal
-    offlineimap_qut:
+    offlineimap_qutstaff:
         build: ./offlineimap/
         restart: always
         volumes:
             - ../maildir:/var/mail/maildir
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
-        command: offlineimap -a qut
-    offlineimap_student:
+        command: offlineimap -a qutstaff
+    offlineimap_qutstudent:
         build: ./offlineimap/
         restart: always
         volumes:
             - ../maildir:/var/mail/maildir
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
-        command: offlineimap -a student
+        command: offlineimap -a qutstudent
     offlineimap_uom:
         build: ./offlineimap/
         restart: always

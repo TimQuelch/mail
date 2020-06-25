@@ -1,6 +1,6 @@
 FROM alpine as build
 
-ENV NOTMUCH_VERSION 0.29
+ENV NOTMUCH_VERSION 0.29.3
 ENV MUCHSYNC_VERSION 5
 
 RUN apk add --no-cache \
@@ -40,7 +40,7 @@ RUN apk add --no-cache \
     shadow \
     sqlite \
     openssh \
-    python \
+    python3 \
     py3-pip \
     talloc \
     xapian-core \

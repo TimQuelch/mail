@@ -1,13 +1,11 @@
-FROM alpine
+FROM python:2.7.18-alpine
 
-ENV OFFLINEIMAP_VERSION 7.3.2
+ENV OFFLINEIMAP_VERSION 7.3.3
 
 RUN apk add --no-cache \
     bash \
     curl \
     make \
-    python2 \
-    py-pip \
     tar
 
 RUN curl -L "https://github.com/OfflineIMAP/offlineimap/archive/v${OFFLINEIMAP_VERSION}.tar.gz" | tar xz \

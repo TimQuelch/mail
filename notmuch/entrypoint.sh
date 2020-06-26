@@ -13,14 +13,16 @@ if [ -d /tmp/.ssh ]; then
 fi
 
 # Create post-new hook if it doesn't exist
-if [ ! -f /var/mail/maildir/.notmuch/post-new ]; then
-    cat <<EOF > /var/mail/maildir/.notmuch/post-new
+hookdir=/var/mail/maildir/.notmuch/hooks
+if [ ! -f ${hookdir}/post-new ]; then
+    mkdir -p $hookdir
+    cat <<EOF > ${hookdir}/post-new
 if [ -f /bin/notmuch-post-new ]; then
    /bin/notmuch-post-new
 fi
 EOF
-    chown mail:mail /var/mail/maildir/.notmuch/post-new
-    chmod +x /var/mail/maildir/.notmuch/post-new
+    chown mail:mail ${hookdir}/post-new
+    chmod +x ${hookdir}/post-new
 fi
 
 exec "$@"

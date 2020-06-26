@@ -12,4 +12,15 @@ if [ -d /tmp/.ssh ]; then
     chmod 600 /var/mail/.ssh/authorized_keys
 fi
 
+# Create post-new hook if it doesn't exist
+if [ ! -f /var/mail/maildir/.notmuch/post-new ]; then
+    cat <<EOF > /var/mail/maildir/.notmuch/post-new
+if [ -f /bin/notmuch-post-new ]; then
+   /bin/notmuch-post-new
+fi
+EOF
+    chown mail:mail /var/mail/maildir/.notmuch/post-new
+    chmod +x /var/mail/maildir/.notmuch/post-new
+fi
+
 exec "$@"

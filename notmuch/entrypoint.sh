@@ -14,16 +14,14 @@ fi
 
 # Create post-new hook if it doesn't exist
 hookdir=/var/mail/maildir/.notmuch/hooks
-if [ ! -f ${hookdir}/post-new ]; then
-    mkdir -p $hookdir
-    cat <<EOF > ${hookdir}/post-new
+mkdir -p $hookdir
+cat <<EOF > ${hookdir}/post-new
 #!/bin/sh
 if [ -f /bin/notmuch-post-new ]; then
    /bin/notmuch-post-new
 fi
 EOF
-    chown mail:mail ${hookdir}/post-new
-    chmod +x ${hookdir}/post-new
-fi
+chown mail:mail ${hookdir}/post-new
+chmod +x ${hookdir}/post-new
 
 exec "$@"

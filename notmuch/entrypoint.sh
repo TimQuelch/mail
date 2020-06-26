@@ -17,6 +17,7 @@ hookdir=/var/mail/maildir/.notmuch/hooks
 if [ ! -f ${hookdir}/post-new ]; then
     mkdir -p $hookdir
     cat <<EOF > ${hookdir}/post-new
+#!/bin/sh
 if [ -f /bin/notmuch-post-new ]; then
    /bin/notmuch-post-new
 fi

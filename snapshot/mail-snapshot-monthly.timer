@@ -1,0 +1,9 @@
+[Unit]
+Description=Snapshot mail monthly
+
+[Timer]
+OnCalendar=monthly
+Unit=mail-snapshot-monthly.service
+
+[Install]
+WantedBy=timers.target

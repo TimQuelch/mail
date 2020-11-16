@@ -1,0 +1,5 @@
+[Unit]
+Description=Snapshot mail and copy to archive as weekly snapshot
+
+[Service]
+ExecStart=/usr/local/bin/mail-snapshot.sh weekly

@@ -1,0 +1,9 @@
+[Unit]
+Description=Snapshot mail daily
+
+[Timer]
+OnCalendar=daily
+Unit=mail-snapshot-daily.service
+
+[Install]
+WantedBy=timers.target

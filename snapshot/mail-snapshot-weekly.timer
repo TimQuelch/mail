@@ -1,0 +1,9 @@
+[Unit]
+Description=Snapshot mail weekly
+
+[Timer]
+OnCalendar=weekly
+Unit=mail-snapshot-weekly.service
+
+[Install]
+WantedBy=timers.target

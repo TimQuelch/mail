@@ -2,3 +2,7 @@
 echo -n "Starting initial tagging with afew..."
 afew --tag --new
 echo " Finished"
+
+echo -n "Dumping notmuch tags"
+notmuch dump > /var/mail/maildir/notmuch.dump
+echo " Finished"

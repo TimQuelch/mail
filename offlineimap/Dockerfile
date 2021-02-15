@@ -1,6 +1,6 @@
 FROM python:2.7.18-alpine
 
-ENV OFFLINEIMAP_VERSION 7.3.3
+ENV OFFLINEIMAP_VERSION="7.3.3"
 
 RUN apk add --no-cache \
     bash \

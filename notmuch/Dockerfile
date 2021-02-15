@@ -1,8 +1,5 @@
 FROM alpine as build
 
-ENV NOTMUCH_VERSION 0.29.3
-ENV MUCHSYNC_VERSION 5
-
 RUN apk add --no-cache \
     bash \
     curl \
@@ -17,12 +14,17 @@ RUN apk add --no-cache \
     talloc-dev \
     tar \
     xapian-core-dev \
-    zlib-dev
+    zlib-dev \
+    xz
+
+ENV NOTMUCH_VERSION="0.31.3"
 
 RUN curl -L "https://notmuchmail.org/releases/notmuch-${NOTMUCH_VERSION}.tar.xz" | tar xJ \
     && cd notmuch-${NOTMUCH_VERSION} \
     && make \
     && make install
+
+ENV MUCHSYNC_VERSION="6"
 
 RUN curl -L "http://www.muchsync.org/src/muchsync-${MUCHSYNC_VERSION}.tar.gz" | tar xz \
     && cd muchsync-${MUCHSYNC_VERSION} \

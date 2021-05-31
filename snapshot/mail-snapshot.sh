@@ -6,11 +6,11 @@ exclude=".notmuch"
 bucket="s3://timquelch-mail-archive"
 
 cd $maildir || exit
-template="$mnt/maildir-$1-$(date -Iminutes)-XXXXX.tar.gz"
+template="$mnt/maildir-$1-$(date -Iminutes)-XXXXX.tar.zst"
 afile="$(mktemp $template)"
 
 echo "Creating maildir snapshot: $afile"
-tar -czf "$afile" --exclude "$exclude" *
+tar -c --exclude "$exclude" * | zstd -o "$afile"
 
 echo "Moving $1 snapshot to $bucket storage"
 aws s3 mv "$afile" "$bucket" --no-progress

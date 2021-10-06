@@ -16,14 +16,6 @@ services:
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
         command: offlineimap -a oldpersonal
-    offlineimap_qutstaff:
-        build: ./offlineimap/
-        restart: always
-        volumes:
-            - ../maildir:/var/mail/maildir
-            - ../secrets:/var/mail/secrets
-            - ./offlineimap.conf:/var/mail/.offlineimaprc
-        command: offlineimap -a qutstaff
     offlineimap_qutstudent:
         build: ./offlineimap/
         restart: always
@@ -40,14 +32,6 @@ services:
             - ../secrets:/var/mail/secrets
             - ./offlineimap.conf:/var/mail/.offlineimaprc
         command: offlineimap -a uom
-    offlineimap_uomstaff:
-        build: ./offlineimap/
-        restart: always
-        volumes:
-            - ../maildir:/var/mail/maildir
-            - ../secrets:/var/mail/secrets
-            - ./offlineimap.conf:/var/mail/.offlineimaprc
-        command: offlineimap -a uomstaff
     notmuch:
         build: ./notmuch/
         restart: always

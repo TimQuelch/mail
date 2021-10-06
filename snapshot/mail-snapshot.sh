@@ -10,7 +10,7 @@ template="$mnt/maildir-$1-$(date -Iminutes)-XXXXX.tar.zst"
 afile="$(mktemp $template)"
 
 echo "Creating maildir snapshot: $afile"
-tar -c --exclude "$exclude" * | zstd -o "$afile"
+tar -c --exclude "$exclude" * | zstd -fo "$afile"
 
 echo "Moving $1 snapshot to $bucket storage"
 aws s3 mv "$afile" "$bucket" --no-progress
